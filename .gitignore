@@ -2,6 +2,7 @@
 /vendor
 /public
 /cgi-bin
+/.idea
 composer.phar
 composer.lock
 .DS_Store
