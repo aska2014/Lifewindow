@@ -1,0 +1,112 @@
+
+<?php $__env->startSection('content'); ?>
+<!-- MAIN -->
+<div id="main">
+
+
+	<section id="gallery">
+	  	<div class="container" style="text-align:center">
+			<ul id="myRoundabout">
+				<?php foreach($projects as $project): ?>
+		        <li> 
+		        	<?php if($image = $project->getRotatorImage(130, 90)): ?>
+		        	<a href="<?php echo URL::project($project); ?>" class="thumb"><?php echo $image->html(); ?></a>
+		        	<?php endif; ?>
+		        </li>
+		        <?php endforeach; ?>
+		    </ul>
+
+		    <?php if($useRotator): ?>
+		    	<?php echo $__env->make('rotator.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	        <?php endif; ?>
+	  	</div>
+	</section>
+
+
+	<div class="wrapper clearfix">
+	
+		
+		<h2 class="page-heading"><span><?php echo Str::upper(Lang::get('words.projects')); ?></span></h2>	
+
+		<!-- thumbs -->
+		<div class="portfolio-thumbs clearfix" >
+			<?php foreach($projects as $project): ?>
+			<figure>
+    			<figcaption>
+                    <h2 class="rubrich2"><?php echo Str::words($project->getTitle(), 4); ?></h2>
+    				<span><?php echo Str::limit($project->getSmallDescription(), $largeBlockChars); ?></span>
+    				<em><?php echo $project->getDate(); ?></em>
+					<a href="<?php echo URL::project($project); ?>" class="opener"></a>
+        		</figcaption>
+        		<a href="<?php echo URL::project($project); ?>" class="thumb"><?php echo $project->getMainOrDefaultImage(300, 188)->html(); ?></a>
+    		</figure>
+    		<?php endforeach; ?>
+        </div>
+		<!-- ends thumbs-->
+		
+		
+		<!-- pager -->
+		<ul class="pager">
+			<li class="paged"><?php echo Lang::get('words.page_1_of'); ?> <?php echo $projects->getLastPage(); ?></li>
+			<?php for( $i = 1; $i <= $projects->getLastPage(); $i++ ): ?>
+		
+				<?php if($i == $projects->getCurrentPage()): ?>
+					<li class="active">
+				<?php else: ?>
+					<li>
+				<?php endif; ?>
+		
+				<a href="<?php echo $projects->getUrl($i); ?>"><?php echo $i; ?></a></li>
+			<?php endfor; ?>
+		</ul>
+		<div class="clearfix"></div>
+    	<!-- ENDS pager -->
+
+    	
+	</div>
+</div>
+<!-- ENDS MAIN -->
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('top_scripts'); ?>
+	
+	<?php echo $__env->make('rotator.scripts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script type="text/javascript">
+	try {
+	  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+	  if(fo)
+	  {
+	  	hasFlash();
+	  }
+	}catch(e){
+	  if(navigator.mimeTypes ["application/x-shockwave-flash"] != undefined)
+	  {
+	  	hasFlash();
+	  }
+	}
+
+	function hasFlash()
+	{
+		$("#myRoundabout").remove();
+	}
+
+	$(window).resize(function()
+	{
+		if($(window).width() < 800)
+		{
+			$("#gallery").hide();
+		}
+		else
+		{
+			$("#gallery").show();
+		}
+	});
+
+</script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

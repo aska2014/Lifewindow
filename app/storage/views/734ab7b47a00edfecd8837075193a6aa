@@ -1,0 +1,18 @@
+<div class="widget-block">
+	<h4><?php echo Str::upper(Lang::get('footer.address')); ?></h4>
+	<p><?php echo $address->getDescription(); ?></p>
+	<ul class="address-block">
+		<?php if($the_address = $address->getAddress()): ?>
+		<li class="address"><?php echo $the_address; ?></li>
+		<?php endif; ?>
+		<?php if($phone = $address->getPhone()): ?>
+		<li class="phone"><?php echo $phone; ?></li>
+		<?php endif; ?>
+		<?php if($mobile = $address->getMobile()): ?>
+		<li class="mobile"><?php echo $mobile; ?></li>
+		<?php endif; ?>
+		<?php if($email = $address->getEmail()): ?>
+		<li class="email"><a href="mailto:email@server.com"><?php echo $email; ?></a></li>
+		<?php endif; ?>
+	</ul>
+</div>

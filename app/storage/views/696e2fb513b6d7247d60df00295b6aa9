@@ -1,0 +1,72 @@
+
+<?php $__env->startSection('content'); ?>
+<!-- MAIN -->
+<div id="main">	
+	<div class="wrapper clearfix">
+		<h2 class="page-heading"><span><?php echo Str::upper(Lang::get('words.service')); ?></span></h2>	
+		<!-- project content -->
+		<div id="project-content" class="clearfix">
+			<!-- slider -->
+			<div class="project-slider">
+		        <div class="flexslider">
+				  <ul class="slides">
+				  	<?php foreach($service->getImagesAndVideos(940,463) as $imageOrVideo): ?>
+				    <li>
+				    	<?php echo $imageOrVideo->html(); ?>
+				    </li>
+				    <?php endforeach; ?>
+				  </ul>
+				</div>
+			</div>
+        	<!-- ENDS slider -->
+        	
+        	<!-- heading -->
+			<div class="project-heading">
+				<h2 style="line-height:30px"><?php echo $service->getTitle(); ?></h2>
+				<div class="clearfix"></div>
+			</div>
+			<!-- ENDS heading -->
+    	
+    	
+			<div class="project-description">
+				<?php echo $service->getLargeDescription(); ?>
+			</div>
+			
+			<div class="project-info">
+				<p>
+				<strong><?php echo Lang::get('words.date'); ?></strong><br/>
+				<?php echo $service->getDate(); ?>
+				</p>
+			</div>
+			<div class="clearfix"></div>
+			
+			<div class="project-pager">
+				<?php if($previousService): ?>
+				<a class="previous-project" href="<?php echo URL::service($previousService); ?>">&#8592; <?php echo Lang::get('words.previous_service'); ?></a>
+				<?php elseif($nextService): ?>				
+				<a class="next-project" href="<?php echo URL::service($nextService); ?>"><?php echo Lang::get('words.next_service'); ?> &#8594;</a>
+				<?php endif; ?>
+			</div>
+			
+			<!-- related -->
+			<div class="related-projects">
+				<div class="related-heading"><?php echo Str::upper(Lang::get('words.realted_services')); ?></div>
+				<div class="related-list">
+					<?php foreach($relatedServices as $service): ?>
+					<figure>
+						<a href="<?php echo URL::service($service); ?>" class="thumb"><?php echo $service->getMainOrDefaultImage(220, 138)->html(); ?></a>
+						<a href="<?php echo URL::service($service); ?>" class="heading"><?php echo $service->getTitle(); ?></a>
+					</figure>
+					<?php endforeach; ?>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!-- ENDS related -->
+			
+		</div>	        	
+    	<!--  ENDS project content-->
+	</div>
+</div>
+<!-- ENDS MAIN -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

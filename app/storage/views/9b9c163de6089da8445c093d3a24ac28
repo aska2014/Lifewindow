@@ -1,0 +1,78 @@
+
+<?php $__env->startSection('content'); ?>
+<!-- MAIN -->
+<div id="main">	
+	<div class="wrapper clearfix">
+		<h2 class="page-heading"><span><?php echo Str::upper(Lang::get('words.project')); ?></span></h2>	
+		<!-- project content -->
+		<div id="project-content" class="clearfix">
+			<!-- slider -->
+			<div class="project-slider">
+		        <div class="flexslider">
+				  <ul class="slides">
+				  	<?php foreach($project->getImagesAndVideos(940,463) as $imageOrVideo): ?>
+				    <li>
+				    	<?php echo $imageOrVideo->html(); ?>
+				    </li>
+				    <?php endforeach; ?>
+				  </ul>
+				</div>
+			</div>
+        	<!-- ENDS slider -->
+        	
+        	<!-- heading -->
+			<div class="project-heading">
+				<h2 style="line-height:30px"><?php echo $project->getTitle(); ?></h2>
+				<div class="clearfix"></div>
+			</div>
+			<!-- ENDS heading -->
+    	
+    	
+			<div class="project-description">
+				<?php echo $project->getLargeDescription(); ?>
+			</div>
+			
+			<div class="project-info">
+				<?php if($project->hasDate()): ?>
+				<p>
+					<strong><?php echo Lang::get('words.date'); ?></strong><br/>
+					<?php echo $project->getDate(); ?>
+				</p>
+				<?php endif; ?>
+				<p>
+				<strong><?php echo Lang::get('words.skills'); ?></strong><br/>
+				<?php echo $project->getSkills(); ?>
+				</p>
+			</div>
+			<div class="clearfix"></div>
+			
+			<div class="project-pager">
+				<?php if($previousProject): ?>
+				<a class="previous-project" href="<?php echo URL::project($previousProject); ?>">&#8592; <?php echo Lang::get('previous_project'); ?></a>
+				<?php elseif($nextProject): ?>				
+				<a class="next-project" href="<?php echo URL::project($nextProject); ?>"><?php echo Lang::get('next_project'); ?> &#8594;</a>
+				<?php endif; ?>
+			</div>
+			
+			<!-- related -->
+			<div class="related-projects">
+				<div class="related-heading"><?php echo Lang::get('words.related_projects'); ?></div>
+				<div class="related-list">
+					<?php foreach($relatedProjects as $project): ?>
+					<figure>
+						<a href="<?php echo URL::project($project); ?>" class="thumb"><?php echo $project->getMainOrDefaultImage(220, 138)->html(); ?></a>
+						<a href="<?php echo URL::project($project); ?>" class="heading"><?php echo $project->getTitle(); ?></a>
+					</figure>
+					<?php endforeach; ?>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!-- ENDS related -->
+			
+		</div>	        	
+    	<!--  ENDS project content-->
+	</div>
+</div>
+<!-- ENDS MAIN -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

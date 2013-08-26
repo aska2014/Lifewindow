@@ -1,0 +1,82 @@
+<footer>
+	<div class="wrapper">
+	
+		<ul  class="widget-cols clearfix">
+			<li class="first-col">
+				
+				<div class="widget-block">
+					<h4><?php echo Str::upper(Lang::get('footer.latest_news')); ?></h4>
+					<?php foreach($news as $new): ?>
+					<div class="recent-post">
+						<a href="<?php echo URL::news($new); ?>" class="thumb"><?php echo $new->getMainOrDefaultImage(54, 54)->html(); ?></a>
+						<div class="post-head">
+							<a href="<?php echo URL::news($new); ?>"><?php echo $new->getTitle(); ?></a><span> <?php echo $new->getDate(); ?></span>
+						</div>
+					</div>
+					<?php endforeach; ?>
+				</div>
+			</li>
+			
+			<li class="second-col">
+				
+				<div class="widget-block">
+					<h4><?php echo $footer->getTitle( Footer::FIRST_SECTION ); ?></h4>
+					<p><?php echo $footer->getDescription( Footer::FIRST_SECTION ); ?></p>
+				</div>
+				
+			</li>
+			
+			 <li class="second-col">
+				<div class="widget-block">
+					<h4><?php echo $footer->getTitle( Footer::SECOND_SECTION ); ?></h4>
+					<p><?php echo $footer->getDescription( Footer::SECOND_SECTION ); ?></p>
+				</div>
+			</li>
+			
+			<li class="fourth-col">
+				<?php echo $__env->make('master.address', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			</li>
+		</ul>				
+		
+		
+		<div class="footer-bottom">
+			<div class="<?php echo Language::isArabic() ? 'right' : 'left'; ?>"><?php echo Str::upper(Lang::get('footer.copyright')); ?><a href="<?php echo URL::to(''); ?>" ><?php echo Str::upper(Lang::get('footer.life_window')); ?></a></div>
+			<div class="<?php echo Language::isArabic() ? 'left'  : 'right'; ?>">
+                <ul id="social-bar">
+                	<?php if($links->facebook): ?>
+					<li><a href="<?php echo $links->facebook; ?>"  title="Follow my facebook"  class="poshytip"><img src="<?php echo URL::asset('img/social/facebook.png'); ?>"  alt="Facebook"    /></a></li>
+					<?php endif; ?>
+
+					<?php if($links->twitter): ?>
+					<li><a href="<?php echo $links->twitter; ?>"  title="Follow my tweets"    class="poshytip"><img src="<?php echo URL::asset('img/social/twitter.png'); ?>"   alt="twitter"     /></a></li>
+					<?php endif; ?>
+					
+					<?php if($links->google): ?>
+					<li><a href="<?php echo $links->google; ?>"  title="Add to the circle"   class="poshytip"><img src="<?php echo URL::asset('img/social/plus.png'); ?>"      alt="Google plus" /></a></li>
+					<?php endif; ?>
+                    
+					<?php if($links->youtube): ?>
+                    <li><a href="<?php echo $links->youtube; ?>"  title="Follow my youtube"   class="poshytip"><img src="<?php echo URL::asset('img/social/youtube.png'); ?>"   alt="youtube"     /></a></li>
+					<?php endif; ?>
+                    
+					<?php if($links->skype): ?>
+                    <li><a href="<?php echo $links->skype; ?>"  title="Add to the skype"    class="poshytip"><img src="<?php echo URL::asset('img/social/skype.png'); ?>"     alt="skype"       /></a></li>
+					<?php endif; ?>
+                    
+					<?php if($links->linkedin): ?>
+                    <li><a href="<?php echo $links->linkedin; ?>"  title="Add to the linkedin" class="poshytip"><img src="<?php echo URL::asset('img/social/linkedin.png'); ?>"  alt="linkedin"    /></a></li>
+					<?php endif; ?>
+                    
+					<?php if($links->flicker): ?>
+                    <li><a href="<?php echo $links->flicker; ?>"  title="Add to the flickr"   class="poshytip"><img src="<?php echo URL::asset('img/social/flickr.png'); ?>"    alt="flickr"      /></a></li>
+					<?php endif; ?>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+    <div class="footer-bottom2">
+    
+    </div>
+    
+</footer>

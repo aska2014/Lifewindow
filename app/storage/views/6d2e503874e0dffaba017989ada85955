@@ -1,0 +1,155 @@
+<header class="clearfix">
+
+	<!-- top widget -->
+	<div id="top-widget-holder">
+		<div class="wrapper">
+			<div id="top-widget">
+				<div class="padding">
+				<ul  class="widget-cols clearfix">
+
+						<li class="first-col">
+							
+							<div class="widget-block">
+								<h4><?php echo Lang::get('header.facebook_title'); ?></h4>
+
+								<img src="<?php echo URL::asset('img/loading.gif'); ?>" style="width:40px; margin-left:40px;" class="loading" />
+
+							</div>
+						</li>
+						
+						<li class="second-col">
+
+							<div class="widget-block">
+	                            <h4><?php echo Lang::get('header.twitter_title'); ?></h4>
+								<img src="<?php echo URL::asset('img/loading.gif'); ?>" style="width:40px; margin-left:40px;" class="loading" />
+							
+							</div>
+						</li>
+						
+						<li class="third-col">
+							<div class="widget-block">
+								<h4><?php echo Str::upper(Lang::get('footer.latest_news')); ?></h4>
+								<?php foreach($news as $new): ?>
+								<div class="recent-post">
+									<a href="<?php echo URL::news($new); ?>" class="thumb"><?php echo $new->getMainOrDefaultImage(54, 54)->html(); ?></a>
+									<div class="post-head">
+										<a href="<?php echo URL::news($new); ?>"><?php echo $new->getTitle(); ?></a><span> <?php echo $new->getDate(); ?></span>
+									</div>
+								</div>
+								<?php endforeach; ?>
+							</div>
+						</li>
+
+						
+						<li class="fourth-col">
+        					<?php echo $__env->make('master.address', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+						</li>	
+					</ul>				
+				</div>
+			</div>
+		</div>
+		<a href="#" id="top-open">Menu</a>
+	</div>
+	<!-- ENDS top-widget -->
+
+	<div class="wrapper clearfix">
+    
+    <!-- logo -->
+    
+    <a href="<?php echo URL::to(''); ?>" id="logo">
+        <div id="flashContent">
+			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="241" height="90" id="liFe-window" align="middle">
+				<param name="movie" value="liFe-window.swf" />
+				<param name="quality" value="best" />
+				<param name="bgcolor" value="#d4d4d4" />
+				<param name="play" value="true" />
+				<param name="loop" value="true" />
+				<param name="wmode" value="transparent" />
+				<param name="scale" value="showall" />
+				<param name="menu" value="true" />
+				<param name="devicefont" value="false" />
+				<param name="salign" value="" />
+				<param name="allowScriptAccess" value="sameDomain" />
+				<!--[if !IE]>-->
+				<object type="application/x-shockwave-flash" data="<?php echo URL::asset('flash/liFe-window.swf'); ?>" width="241" height="90">
+					<param name="movie" value="liFe-window.swf" />
+					<param name="quality" value="best" />
+					<param name="bgcolor" value="#d4d4d4" />
+					<param name="play" value="true" />
+					<param name="loop" value="true" />
+					<param name="wmode" value="transparent" />
+					<param name="scale" value="showall" />
+					<param name="menu" value="true" />
+					<param name="devicefont" value="false" />
+					<param name="salign" value="" />
+					<param name="allowScriptAccess" value="sameDomain" />
+				<!--<![endif]-->
+					<a href="http://www.adobe.com/go/getflash">
+						<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+					</a>
+				<!--[if !IE]>-->
+				</object>
+				<!--<![endif]-->
+			</object>
+		</div>
+    </a>
+    
+
+   		<!-- ENDS logo-->
+    
+        <nav>
+			<ul id="nav" class="sf-menu">
+				<li class="current-menu-item"><a href="<?php echo URL::route('home'); ?>"><?php echo Str::upper(Lang::get('menu.home')); ?></a></li>
+				<?php if($aboutPage): ?>
+				<li><a href="<?php echo URL::page($aboutPage); ?>"><?php echo Str::upper(Str::limit($aboutPage->getTitle(), $menuChars)); ?></a>
+					<? $nestedPages = $aboutPage->getNested(); ?> 
+					<?php if(! $nestedPages->isEmpty()): ?>
+					<ul>
+						<?php foreach($nestedPages as $page): ?>
+						<li><a href="<?php echo URL::page($page); ?>"><?php echo Str::upper(Str::limit($page->getTitle(), $menuChars)); ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+					<?php endif; ?>
+				</li>
+				<?php endif; ?>
+                <li><a href="<?php echo URL::route('services'); ?>"><?php echo Str::upper(Lang::get('menu.services')); ?></a>
+					<ul>
+						<?php foreach($services as $service): ?>
+						<li><a href="<?php echo URL::service( $service ); ?>"><?php echo Str::upper(Str::limit($service->getTitle(), $menuChars)); ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				</li>
+                <li><a href="<?php echo URL::route('projects'); ?>"><?php echo Str::upper(Lang::get('menu.projects')); ?></a>
+					<ul>
+						<?php foreach($projects as $project): ?>
+						<li><a href="<?php echo URL::project( $project ); ?>"><?php echo Str::upper(Str::limit($project->getTitle(), $menuChars)); ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				</li>
+				<li><a href="<?php echo URL::route('all_news'); ?>"><?php echo Str::upper(Lang::get('menu.news')); ?></a></li>
+				<li><a href="<?php echo URL::route('contact'); ?>"><?php echo Str::upper(Lang::get('menu.contact')); ?></a></li>
+				<?php if(!empty($pages)): ?>
+				<li><a href="#"><?php echo Str::upper(Lang::get('menu.more')); ?></a>
+					<ul>
+						<?php foreach($pages as $page): ?>
+						<li><a href="<?php echo URL::page( $page ); ?>"><?php echo Str::upper(Str::limit($page->getTitle(), $menuChars)); ?></a>
+							<? $nestedPages = $page->getNested(); ?> 
+							<?php if(! $nestedPages->isEmpty()): ?>
+								<ul>
+									<?php foreach($nestedPages as $nestedPage): ?>
+									<li><a href="<?php echo URL::page( $page ); ?>"><?php echo Str::upper(Str::limit($nestedPage->getTitle(), $menuChars)); ?></a></li>
+									<?php endforeach; ?>
+								</ul>
+							<?php endif; ?>
+						</li>
+						<?php endforeach; ?>
+					</ul>
+				</li>
+				<?php endif; ?>
+			</ul>
+			<div id="combo-holder"></div>
+		</nav>
+	</div>
+</header>
+
+

@@ -1,0 +1,12 @@
+<h2>Message from Life window contact us form.</h2><br />
+<b>Name: </b> <?php echo $name; ?><br />
+<b>Email: </b> <?php echo $email; ?><br />
+<b>Phone: </b> <?php echo $phone; ?><br />
+<b>Company: </b> <?php echo $company; ?><br />
+<p>
+	<?php echo $content; ?>
+</p>
+
+<br /><br />
+
+<p><i>Sent at <?php echo date('F j, Y H:i:s', strtotime($created_at)); ?></i></p>

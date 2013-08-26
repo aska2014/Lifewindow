@@ -1,0 +1,144 @@
+
+<?php $__env->startSection('content'); ?>
+<!-- MAIN -->
+<div id="main">	
+	<div class="wrapper">
+
+		<!-- slider holder -->
+		<div id="slider-holder" class="clearfix">
+			
+            <?php if($useSlider): ?>
+			<!-- slider -->
+	        <div class="flexslider home-slider">
+			  <ul class="slides">
+                <?php foreach($sliders as $slider): ?>
+
+                    <?php if($slider->hasImageOrVideo( 620, 305 )): ?>
+                    <li>
+                        <?php echo $slider->getImageOrVideo( 620, 305 )->html(); ?>
+                        <p class="flex-caption"><?php echo $slider->getTitle(); ?></p>
+                    </li>
+                    <?php endif; ?>
+
+                <?php endforeach; ?>
+			  </ul>
+			</div>
+        	<!-- ENDS slider -->
+            <?php endif; ?>
+        	
+        	<div class="home-slider-clearfix "></div>
+        	
+        	<!-- Headline -->
+        	<div id="headline">
+               <?php if(Language::isArabic()): ?>
+               <h1>نافذة  <br> الحياة  <br> للإنتاج الفني</h1>
+               <?php else: ?>
+               <h1>Life <br> Window <br> Productions</h1>
+               <?php endif; ?>
+
+               <?php if($useBanner): ?>
+               <div id="bannerRotator">     
+                  <ul>
+                    <?php foreach(Banner::getAllImages(260, 85) as $bannerImage): ?>
+
+                        <li><a href="#"><?php echo $bannerImage->html(); ?></a></li>
+
+                    <?php endforeach; ?>
+                  </ul>
+                </div>
+                <?php endif; ?>
+
+               <select id="ddSlick-ResetMenu" class="dropdown">
+                    <option data-href="<?php echo route('language', Language::ARABIC ); ?>" value="0" data-imagesrc="<?php echo URL::asset('images/rabia.gif'); ?>">Arabic</option>
+                    <option data-href="<?php echo route('language', Language::ENGLISH); ?>" value="1" data-imagesrc="<?php echo URL::asset('images/usa-flag.gif'); ?>">English</option>
+               </select>
+              
+               <em id="corner"> </em>
+        	</div>
+        	<!-- ENDS headline -->
+		</div>
+		<!-- ENDS slider holder -->
+
+        <?php if(!$services->isEmpty()): ?>
+		<!-- home-block -->
+    	<div class="home-block">
+    		<h2 class="home-block-heading"><span><?php echo Str::upper(Lang::get('home.featured_services')); ?></span></h2>
+    		<div class="one-third-thumbs clearfix" >
+                <?php $i = 0; ?>
+                <?php foreach($services as $service): ?>
+                <?php $i++; ?>
+    			<figure <?php if($i%3 == 0) echo 'class="last"'; ?>>
+        			<figcaption>
+                        <h2 class="rubrich2"><?php echo Str::words($service->getTitle(), 4); ?></h2><br />
+    					<span><?php echo Str::limit($service->getSmallDescription(), $largeBlockChars); ?></span>
+    					<em><?php echo $service->getDate(); ?></em>
+    					<a href="<?php echo URL::service($service); ?>" class="opener"></a>
+	        		</figcaption>
+	        		<a href="<?php echo URL::service($service); ?>" class="thumb"><?php echo $service->getMainOrDefaultImage(300, 188)->html(); ?></a>
+                </figure>
+                <?php endforeach; ?>
+    		</div>
+    	</div>
+    	<!-- ENDS home-block -->
+    	<?php endif; ?>
+
+        <?php if(!$projects->isEmpty()): ?>
+    	<!-- home-block -->
+    	<div class="home-block">
+    		<h2 class="home-block-heading"><span><?php echo Str::upper(Lang::get('home.latest_projects')); ?></span></h2>
+    		<div class="one-fourth-thumbs clearfix">
+                <? $i = 0; ?>
+                <?php foreach($projects as $project): ?>
+                <? $i++; ?>
+                <figure <? if($i%4 == 0) echo 'class="last"'; ?>>
+        			<figcaption>
+    					<strong><?php echo Str::words($project->getTitle(), 6); ?></strong><br />
+    					<span><?php echo Str::limit($project->getSmallDescription(), $smallBlockChars); ?></span>
+    					<em><?php echo $project->getDate(); ?></em>
+    					<a href="<?php echo URL::project($project); ?>" class="opener"></a>
+	        		</figcaption>
+	        		<a href="<?php echo URL::project($project); ?>"  class="thumb"><?php echo $project->getMainOrDefaultImage(220, 138)->html(); ?></a>
+                </figure>
+                <?php endforeach; ?>
+                
+                <?php if(Language::isArabic()): ?>
+        		<a href="<?php echo URL::route('projects'); ?>" class="more-link left"><?php echo Lang::get('home.more_projects'); ?> &#8592;</a>
+                <?php else: ?>
+                <a href="<?php echo URL::route('projects'); ?>" class="more-link right"><?php echo Lang::get('home.more_projects'); ?>  &#8594;</a>
+                <?php endif; ?>
+    		</div>
+    	</div>
+    	<!-- ENDS home-block -->
+        <?php endif; ?>
+	</div>
+</div>
+<!-- ENDS MAIN -->
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+
+<script type="text/javascript">
+$(function() {
+
+    $('#ddSlick-ResetMenu').ddslick({
+        width: '100%',
+        <?php if(Language::isArabic()): ?>
+        selectText: 'إختيار اللغة ',
+        <?php else: ?>
+        selectText: 'Select Language',
+        <?php endif; ?>
+        resetmenu: true,
+        defaultTarget: "_self"
+    });
+});
+
+<?php if($useBanner): ?>
+$(document).ready(function(){
+    bannerRotator('#bannerRotator', 800, 8000, true);
+});
+<?php endif; ?>
+
+</script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

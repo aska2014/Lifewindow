@@ -1,0 +1,7 @@
+/bootstrap/compiled.php
+/vendor
+/public
+/cgi-bin
+composer.phar
+composer.lock
+.DS_Store
