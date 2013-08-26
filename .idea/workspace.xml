@@ -5,7 +5,8 @@
     <ignored path="www.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/ContactController.php" changelist="6bcff6fa-2b5d-47e4-bd9d-1b64b6231f11" time="1377511561700" ignored="false" />
-    <file path="/.gitignore" changelist="6bcff6fa-2b5d-47e4-bd9d-1b64b6231f11" time="1377511678815" ignored="false" />
+    <file path="/.gitignore" changelist="6bcff6fa-2b5d-47e4-bd9d-1b64b6231f11" time="1377511829025" ignored="false" />
+    <file path="D:/Projects/KareemPHP/www/.gitignore" changelist="6bcff6fa-2b5d-47e4-bd9d-1b64b6231f11" time="1377511829025" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +132,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
