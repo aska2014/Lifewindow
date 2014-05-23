@@ -12,10 +12,13 @@
 */
 
 
-Route::get('/', function()
-{
-	return View::make('under_construction');
-});
+
+//Route::get('{all}', function()
+//{
+//	return View::make('under_construction');
+//
+//})->where('all', '.*');
+
 
 Route::get('/home', array('as' => 'home', function()
 {
